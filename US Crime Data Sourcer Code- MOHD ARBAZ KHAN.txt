@@ -1,0 +1,45 @@
+1, Which police district has the highest number of overall crime incidents?
+Ans, I used the query below which revealed district “18” with 190 incidents.
+select District,
+count(*) as number_of_incidents
+from crime_us
+group by District 
+order by number_of_incidents desc;
+
+2, What crime has the highest rate in the district above (district 8)?
+Ans, I used the query below and it revealed Theft had the highest crime rate with a total of incidents.
+select Primary_type,
+count(*) as number_of_incident
+from crime_us
+where District ='18'
+group by Primary_typeorder by count(*) DESC
+
+3, In what year was this particular crime highest in this district?(District 18 , Theft crimes)?
+Ans, Results show in the year 2022.
+select distinct Year
+FROM crime_us
+where District='18';
+
+4, Finding out location of arrest count where crime is THEFT?
+Select Location_Description,count(Location_Description)
+From crime_us
+Where Primary_type ='THEFT'
+group by Location_Description
+
+5, Finding Out no of Arrest for Different Crimes.?
+Select Primary_Type,count(Arrest) From crime_us 
+Where Arrest='True' group by Primary_Type order by count(Arrest)
+
+6,Finding the count arrested for ‘CHILD ABUSE” ?
+Select Description,count(Description) as 'no of arrest'
+From crime_us
+Where Description='CHILD ABUSE'
+
+7,Finding out which community has which crime?
+Select Description,Community_Area
+from crime_us
+order by Community_Area DESC
+
+8,Different crimes committed on different years ?
+Select Date_s,Month_s,Primary_Type
+from crime_us order by Date_s
